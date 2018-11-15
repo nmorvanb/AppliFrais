@@ -17,22 +17,22 @@
 				document.getElementById("notify").style.display = "none";
 			}
 		</script>
-		
+
 	</head>
 
 	<body onload="setTimeout(hideNotify,7000);">
 		<div id="page">
 			<div id="entete">
 				<img src="<?php echo $v_path.'/templates/images/logo.jpg'?>" id="logoGSB" alt="Laboratoire Galaxy-Swiss Bourdin" title="Laboratoire Galaxy-Swiss Bourdin" />
-				<h1>Gestion des frais de déplacements</h1>
+				<h1>Gestionn des frais de déplacements</h1>
 			</div>
-			
+
 			<!-- Division pour le menu -->
 			<div id="menuGauche">
 				<div id="infosUtil">
 					<h2></h2>
-				</div>  
-				
+				</div>
+
 				<ul id="menuList">
 					<li>
 						Visiteur :<br/>
@@ -50,7 +50,7 @@
 						<?php echo anchor('c_visiteur/deconnecter', 'Se déconnecter', 'title="Déconnexion"'); ?>
 					</li>
 				</ul>
-				
+
 			</div>
 
 			<?php echo $body; ?>
@@ -59,9 +59,7 @@
 				<br/>
 			</div>
 
-		</div>    
+		</div>
 
 	</body>
 </html>
-
-	  
