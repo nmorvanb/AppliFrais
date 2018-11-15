@@ -136,10 +136,8 @@ class C_visiteur extends CI_Controller {
 					'montant' => $this->input->post('montant')
 				);
 
-				$this->a_visiteur->ajouteFrais($idVisiteur, $mois, $uneLigne);
-
 				// ... et on revient en modification de la fiche
-				if ()
+				if ($this->a_visiteur->ajouteFrais($idVisiteur, $mois, $uneLigne)==1)
 				{
 					$this->a_visiteur->modFiche($idVisiteur, $mois, 'Ligne "Hors forfait" ajoutée ...');
 				}
