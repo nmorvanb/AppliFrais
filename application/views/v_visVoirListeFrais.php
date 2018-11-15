@@ -30,7 +30,7 @@
 
 
 	<table class="listeLegere">
-		<caption>Descriptif des éléments hors forfait</caption>
+		<caption>Descriiptif des éléments hors forfait</caption>
 		<tr>
 			<th >Date</th>
 			<th >Libellé</th>
