@@ -145,6 +145,8 @@ class A_visiteur extends CI_Model {
           return 1;
         }
 
+        $this->dataAccess->majLignesForfait($idVisiteur,$mois,$lesFrais);
+        $this->dataAccess->recalculeMontantFiche($idVisiteur,$mois);
 
 	}
 
