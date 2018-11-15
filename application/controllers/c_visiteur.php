@@ -141,7 +141,7 @@ class C_visiteur extends CI_Controller {
 				// ... et on revient en modification de la fiche
 				if ()
 				{
-						$this->a_visiteur->modFiche($idVisiteur, $mois, 'Ligne "Hors forfait" ajoutée ...');
+					$this->a_visiteur->modFiche($idVisiteur, $mois, 'Ligne "Hors forfait" ajoutée ...');
 				}
 				else
 				{
