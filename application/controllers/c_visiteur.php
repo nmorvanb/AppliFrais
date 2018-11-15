@@ -7,7 +7,7 @@ class C_visiteur extends CI_Controller {
 
 	/**
 	 * Aiguillage des demandes faites au contrôleur
-	 * La fonction _remap est une fonctionnalité offerte par CI destinée à remplacer 
+	 * La fonction _remap est une fonctionnalité offerte par CI destinée à remplacer
 	 * le comportement habituel de la fonction index. Grâce à _remap, on dispose
 	 * d'une fonction unique capable d'accepter un nombre variable de paramètres.
 	 *
@@ -18,9 +18,9 @@ class C_visiteur extends CI_Controller {
 	{
 		// chargement du modèle d'authentification
 		$this->load->model('authentif');
-		
+
 		// contrôle de la bonne authentification de l'utilisateur
-		if (!$this->authentif->estConnecte()) 
+		if (!$this->authentif->estConnecte())
 		{
 			// l'utilisateur n'est pas authentifié, on envoie la vue de connexion
 			$data = array();
@@ -28,7 +28,7 @@ class C_visiteur extends CI_Controller {
 		}
 		else
 		{
-			// Aiguillage selon l'action demandée 
+			// Aiguillage selon l'action demandée
 			// CI a traité l'URL au préalable de sorte à toujours renvoyer l'action "index"
 			// même lorsqu'aucune action n'est exprimée
 			if ($action == 'index')				// index demandé : on active la fonction accueil du modèle visiteur
@@ -57,13 +57,13 @@ class C_visiteur extends CI_Controller {
 			}
 			elseif ($action == 'voirFiche')		// voirFiche demandé : on active la fonction voirFiche du modèle authentif
 			{	// TODO : contrôler la validité du second paramètre (mois de la fiche à consulter)
-			
+
 				$this->load->model('a_visiteur');
 
 				// obtention du mois de la fiche à modifier qui doit avoir été transmis
 				// en second paramètre
 				$mois = $params[0];
-				// mémorisation du mode modification en cours 
+				// mémorisation du mode modification en cours
 				// on mémorise le mois de la fiche en cours de modification
 				$this->session->set_userdata('mois', $mois);
 				// obtention de l'id utilisateur courant
@@ -73,13 +73,13 @@ class C_visiteur extends CI_Controller {
 			}
 			elseif ($action == 'modFiche')		// modFiche demandé : on active la fonction modFiche du modèle authentif
 			{	// TODO : contrôler la validité du second paramètre (mois de la fiche à modifier)
-			
+
 				$this->load->model('a_visiteur');
 
 				// obtention du mois de la fiche à modifier qui doit avoir été transmis
 				// en second paramètre
 				$mois = $params[0];
-				// mémorisation du mode modification en cours 
+				// mémorisation du mode modification en cours
 				// on mémorise le mois de la fiche en cours de modification
 				$this->session->set_userdata('mois', $mois);
 				// obtention de l'id utilisateur courant
@@ -104,7 +104,7 @@ class C_visiteur extends CI_Controller {
 			elseif ($action == 'majForfait') // majFraisForfait demandé : on active la fonction majFraisForfait du modèle visiteur ...
 			{	// TODO : conrôler que l'obtention des données postées ne rend pas d'erreurs
 				// TODO : dans la dynamique de l'application, contrôler que l'on vient bien de modFiche
-				
+
 				$this->load->model('a_visiteur');
 
 				// obtention de l'id du visiteur et du mois concerné
@@ -122,7 +122,7 @@ class C_visiteur extends CI_Controller {
 			elseif ($action == 'ajouteFrais') // ajouteLigneFrais demandé : on active la fonction ajouteLigneFrais du modèle visiteur ...
 			{	// TODO : conrôler que l'obtention des données postées ne rend pas d'erreurs
 				// TODO : dans la dynamique de l'application, contrôler que l'on vient bien de modFiche
-				
+
 				$this->load->model('a_visiteur');
 
 				// obtention de l'id du visiteur et du mois concerné
@@ -130,7 +130,7 @@ class C_visiteur extends CI_Controller {
 				$mois = $this->session->userdata('mois');
 
 				// obtention des données postées
-				$uneLigne = array( 
+				$uneLigne = array(
 					'dateFrais' => $this->input->post('dateFrais'),
 					'libelle' => $this->input->post('libelle'),
 					'montant' => $this->input->post('montant')
@@ -139,24 +139,32 @@ class C_visiteur extends CI_Controller {
 				$this->a_visiteur->ajouteFrais($idVisiteur, $mois, $uneLigne);
 
 				// ... et on revient en modification de la fiche
-				$this->a_visiteur->modFiche($idVisiteur, $mois, 'Ligne "Hors forfait" ajoutée ...');				
+				if ()
+				{
+						$this->a_visiteur->modFiche($idVisiteur, $mois, 'Ligne "Hors forfait" ajoutée ...');
+				}
+				else
+				{
+					$this->a_visiteur->modFiche($idVisiteur, $mois, 'Ligne "Hors forfait" impossible a ajouter ...');
+				}
+
 			}
 			elseif ($action == 'supprFrais') // suppprLigneFrais demandé : on active la fonction suppprLigneFrais du modèle visiteur ...
 			{	// TODO : contrôler la validité du second paramètre (mois de la fiche à modifier)
 				// TODO : dans la dynamique de l'application, contrôler que l'on vient bien de modFiche
-			
+
 				$this->load->model('a_visiteur');
 
 				// obtention de l'id du visiteur et du mois concerné
 				$idVisiteur = $this->session->userdata('idUser');
 				$mois = $this->session->userdata('mois');
-				
+
 				// Quel est l'id de la ligne à supprimer : doit avoir été transmis en second paramètre
 				$idLigneFrais = $params[0];
 				$this->a_visiteur->supprLigneFrais($idVisiteur, $mois, $idLigneFrais);
 
 				// ... et on revient en modification de la fiche
-				$this->a_visiteur->modFiche($idVisiteur, $mois, 'Ligne "Hors forfait" supprimée ...');				
+				$this->a_visiteur->modFiche($idVisiteur, $mois, 'Ligne "Hors forfait" supprimée ...');
 			}
 			else								// dans tous les autres cas, on envoie la vue par défaut pour l'erreur 404
 			{

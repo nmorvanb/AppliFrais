@@ -44,7 +44,7 @@
 			<th >Date</th>
 			<th >Libellé</th>
 			<th >Montant</th>
-		  <th >&nbsp;</th> 
+		  <th >&nbsp;</th>
 		</tr>
 
 		<?php
@@ -77,15 +77,15 @@
 				<legend>Nouvel élément hors forfait</legend>
 				<p>
 					<label for="txtDateHF">Date (jj/mm/aaaa): </label>
-					<input type="text" id="txtDateHF" name="dateFrais" size="10" maxlength="10" value=""  />
+					<input type="text" id="txtDateHF" required name="dateFrais" size="10" maxlength="10" value=""  />
 				</p>
 				<p>
 					<label for="txtLibelleHF">Libellé</label>
-					<input type="text" id="txtLibelleHF" name="libelle" size="60" maxlength="256" value="" />
+					<input type="text" id="txtLibelleHF" required name="libelle" size="60" maxlength="256" value="" />
 				</p>
 				<p>
 					<label for="txtMontantHF">Montant : </label>
-					<input type="text" id="txtMontantHF" name="montant" size="10" maxlength="10" value="" />
+					<input type="text" id="txtMontantHF" required name="montant" size="10" maxlength="10" value="" />
 				</p>
 			</fieldset>
 		</div>

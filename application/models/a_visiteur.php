@@ -130,12 +130,6 @@ class A_visiteur extends CI_Model {
 	{	// TODO : s'assurer que les paramètres reçus sont cohérents avec ceux mémorisés en session
 		// TODO : valider la donnée contenues dans $uneLigne ...
 
-    if(empty($uneLigne['dateFrais']) || empty($uneLigne['libelle']) || empty($uneLigne['montant']))
-    {
-      echo '<script type="text/javascript">alert("ERREUR : tous les champs n ont pas ete renseignés.")</script>' ;
-    }
-    else
-      {
         $dateFrais = $uneLigne['dateFrais'];
 		    $libelle = $uneLigne['libelle'];
 		    $montant = $uneLigne['montant'];
@@ -148,7 +142,7 @@ class A_visiteur extends CI_Model {
         {
           $this->dataAccess->creeLigneHorsForfait($idVisiteur,$mois,$libelle,$dateFrais,$montant);
         }
-      }
+
 
 	}
 
