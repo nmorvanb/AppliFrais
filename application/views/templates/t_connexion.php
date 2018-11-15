@@ -17,7 +17,7 @@
 		<div id="page">
 			<div id="entete">
 				<img src="<?php echo $v_path.'/templates/images/logo.jpg'?>" id="logoGSB" alt="Laboratoire Galaxy-Swiss Bourdin" title="Laboratoire Galaxy-Swiss Bourdin" />
-				<h1>Suivi du remboursement des frais</h1>
+				<h1>Suivi du remboursement des frais.</h1>
 			</div>
 
 			<?php echo $body; ?>
@@ -26,9 +26,7 @@
 				<br/>
 			</div>
 
-		</div>    
+		</div>
 
 	</body>
 </html>
-
-	  
