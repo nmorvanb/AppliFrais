@@ -77,7 +77,7 @@
 				<legend>Nouvel élément hors forfait</legend>
 				<p>
 					<label for="txtDateHF">Date (jj/mm/aaaa): </label>
-					<input type="text" id="txtDateHF" required name="dateFrais" size="10" maxlength="10" value=""  />
+					<input type="Date" id="txtDateHF" required name="dateFrais" size="10" maxlength="10" value=""  />
 				</p>
 				<p>
 					<label for="txtLibelleHF">Libellé</label>

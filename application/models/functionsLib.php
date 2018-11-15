@@ -10,19 +10,18 @@ class FunctionsLib extends CI_Model {
 
 	/**
 	 * Transforme une date au format français jj/mm/aaaa vers le format anglais aaaa-mm-jj
-	 
+
 	 * @param $madate au format  jj/mm/aaaa
 	 * @return la date au format anglais aaaa-mm-jj
 	*/
 	function dateFrancaisVersAnglais($maDate)
 	{
-		@list($jour,$mois,$annee) = explode('/',$maDate);
-		return date('Y-m-d',mktime(0,0,0,$mois,$jour,$annee));
+    return date($maDate);
 	}
-	
+
 	/**
-	 * Transforme une date au format format anglais aaaa-mm-jj vers le format français jj/mm/aaaa 
-	 
+	 * Transforme une date au format format anglais aaaa-mm-jj vers le format français jj/mm/aaaa
+
 	 * @param $madate au format  aaaa-mm-jj
 	 * @return la date au format format français jj/mm/aaaa
 	*/
@@ -32,10 +31,10 @@ class FunctionsLib extends CI_Model {
 	   $date="$jour"."/".$mois."/".$annee;
 	   return $date;
 	}
-	
+
 	/**
-	 * retourne le mois d'une date au format aaaamm 
-	 
+	 * retourne le mois d'une date au format aaaamm
+
 	 * @param $date au format  jj/mm/aaaa
 	 * @return : le mois au format aaaamm
 	*/
@@ -49,12 +48,12 @@ class FunctionsLib extends CI_Model {
 	}
 
 	/**
-	 * retourne, sous la forme d'un tableau, les 6 derniers mois 
+	 * retourne, sous la forme d'un tableau, les 6 derniers mois
 	 * à partir d'aujourd'hui au format aaaamm, y compris le mois courant
 	 * A noter: compte-tenu du fonctionnement de la méthode DateTime::sub,
 	 * il peut arriver que l'on retrouve 2 fois le même mois parmi
 	 * les 6 mois résultants. On aura, dans ce cas, que 5 mois distincts.
-	 
+
 	 * @return : un tableau contenant les 6 mois au format aaaamm
 	*/
 	function getSixDerniersMois()
@@ -63,7 +62,7 @@ class FunctionsLib extends CI_Model {
 
 		$date = new datetime ("now");
 		$interval = new DateInterval('P1M');
-		
+
 		for($i=1; $i<=6; $i++) {
 			@list($jour,$mois,$annee) = explode('/',$date->format("d/m/Y"));
 			if(strlen($mois) == 1){
@@ -77,36 +76,36 @@ class FunctionsLib extends CI_Model {
 
 	/**
 	 * Indique si une valeur est un entier positif ou nul
-	 
+
 	 * @param $valeur
 	 * @return vrai ou faux
 	*/
-	public function estEntierPositif($valeur) 
+	public function estEntierPositif($valeur)
 	{
 		return preg_match("/[^0-9]/", $valeur) == 0;
 	}
 
 	/**
 	 * Indique si un tableau de valeurs est constitué d'entiers positifs ou nuls
-	 
+
 	 * @param $tabEntiers : le tableau
 	 * @return vrai ou faux
 	*/
-	public function estTableauEntiers($tabEntiers) 
+	public function estTableauEntiers($tabEntiers)
 	{
 		$ok = true;
 		foreach($tabEntiers as $unEntier){
 			if(!$this->estEntierPositif($unEntier)){
-				$ok=false; 
+				$ok=false;
 			}
 		}
 		return $ok;
 	}
-	
+
 	/**
 	 * Vérifie si une date est inférieure d'un an à la date actuelle
-	 
-	 * @param $dateTestee 
+
+	 * @param $dateTestee
 	 * @return vrai ou faux
 	*/
 	function estDateDepassee($dateTestee)
@@ -116,13 +115,13 @@ class FunctionsLib extends CI_Model {
 		$annee--;
 		$AnPasse = $annee.$mois.$jour;
 		@list($jourTeste,$moisTeste,$anneeTeste) = explode('/',$dateTestee);
-		return ($anneeTeste.$moisTeste.$jourTeste < $AnPasse); 
+		return ($anneeTeste.$moisTeste.$jourTeste < $AnPasse);
 	}
-	
+
 	/**
-	 * Vérifie la validité du format d'une date française jj/mm/aaaa 
-	 
-	 * @param $date 
+	 * Vérifie la validité du format d'une date française jj/mm/aaaa
+
+	 * @param $date
 	 * @return vrai ou faux
 	*/
 	function estDateValide($date)
@@ -146,15 +145,15 @@ class FunctionsLib extends CI_Model {
 	}
 
 	/**
-	 * Vérifie que le tableau de frais ne contient que des valeurs numériques 
-	 
-	 * @param $lesFrais 
+	 * Vérifie que le tableau de frais ne contient que des valeurs numériques
+
+	 * @param $lesFrais
 	 * @return vrai ou faux
 	*/
 	function lesQteFraisValides($lesFrais)
 	{
 		return $this->estTableauEntiers($lesFrais);
 	}
-		
+
 
 }
