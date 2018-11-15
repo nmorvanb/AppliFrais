@@ -134,6 +134,12 @@ class A_visiteur extends CI_Model {
 		    $libelle = $uneLigne['libelle'];
 		    $montant = $uneLigne['montant'];
 
+        $jour=substr($dateFrais,0,strpos($dateFrais,'/'));
+        $dateFrais=substr($dateFrais,strpos($dateFrais,'/')+1);
+        $mois=substr($dateFrais,0,strpos($dateFrais,'/'));
+        $dateFrais=substr($dateFrais,strpos($dateFrais,'/')+1);
+        $annee=substr($dateFrais,0);
+
         if ($montant <= 0)
         {
           $montant = "";
