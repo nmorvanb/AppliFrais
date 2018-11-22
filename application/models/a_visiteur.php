@@ -144,6 +144,7 @@ class A_visiteur extends CI_Model {
         else {
           if($moisdate != $mois) {
             return 0;
+            
           }
           else {
             $this->dataAccess->creeLigneHorsForfait($idVisiteur,$mois,$libelle,$dateFrais,$montant);
