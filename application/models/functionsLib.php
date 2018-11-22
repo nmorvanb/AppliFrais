@@ -155,5 +155,10 @@ class FunctionsLib extends CI_Model {
 		return $this->estTableauEntiers($lesFrais);
 	}
 
+  function estMoisValide($date)
+  {
+    return $this->getMois($this->dateAnglaisVersFrancais($date));
+  }
+
 
 }

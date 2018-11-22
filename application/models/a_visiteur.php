@@ -129,21 +129,27 @@ class A_visiteur extends CI_Model {
 	public function ajouteFrais($idVisiteur, $mois, $uneLigne)
 	{	// TODO : s'assurer que les paramètres reçus sont cohérents avec ceux mémorisés en session
 		// TODO : valider la donnée contenues dans $uneLigne ...
+        $this->load->model('functionsLib');
 
         $dateFrais = $uneLigne['dateFrais'];
 		    $libelle = $uneLigne['libelle'];
 		    $montant = $uneLigne['montant'];
 
+        $moisdate = $this->functionsLib->estMoisValide($dateFrais));
         if ($montant <= 0)
         {
           $montant = "";
           return 0;
         }
-        else
-        {
-          $this->dataAccess->creeLigneHorsForfait($idVisiteur,$mois,$libelle,$dateFrais,$montant);
-          $this->dataAccess->recalculeMontantFiche($idVisiteur,$mois);
-          return 1;
+        else {
+          if($moisdate != $mois) {
+            return 0;
+          }
+          else {
+            $this->dataAccess->creeLigneHorsForfait($idVisiteur,$mois,$libelle,$dateFrais,$montant);
+            $this->dataAccess->recalculeMontantFiche($idVisiteur,$mois);
+            return 1;
+          }
         }
 	}
 
