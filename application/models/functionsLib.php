@@ -16,7 +16,7 @@ class FunctionsLib extends CI_Model {
 	*/
 	function dateFrancaisVersAnglais($maDate)
 	{
-    return date($maDate);
+      return date($maDate);
 	}
 
 	/**

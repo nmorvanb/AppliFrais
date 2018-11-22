@@ -146,6 +146,7 @@ class C_visiteur extends CI_Controller {
 					$this->a_visiteur->modFiche($idVisiteur, $mois, 'Ligne "Hors forfait" impossible a ajouter ...');
 				}
 
+
 			}
 			elseif ($action == 'supprFrais') // suppprLigneFrais demandé : on active la fonction suppprLigneFrais du modèle visiteur ...
 			{	// TODO : contrôler la validité du second paramètre (mois de la fiche à modifier)

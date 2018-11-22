@@ -142,12 +142,9 @@ class A_visiteur extends CI_Model {
         else
         {
           $this->dataAccess->creeLigneHorsForfait($idVisiteur,$mois,$libelle,$dateFrais,$montant);
+          $this->dataAccess->recalculeMontantFiche($idVisiteur,$mois);
           return 1;
         }
-
-        $this->dataAccess->majLignesForfait($idVisiteur,$mois,$lesFrais);
-        $this->dataAccess->recalculeMontantFiche($idVisiteur,$mois);
-
 	}
 
 	/**
