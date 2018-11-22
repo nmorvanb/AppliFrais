@@ -135,7 +135,11 @@ class A_visiteur extends CI_Model {
 		    $libelle = $uneLigne['libelle'];
 		    $montant = $uneLigne['montant'];
 
+<<<<<<< HEAD
         $moisdate = $this->functionsLib->estMoisValide($dateFrais));
+=======
+        $moisdate = $this->functionsLib->getMois($this->functionsLib->dateAnglaisVersFrancais($dateFrais));
+>>>>>>> 4ccb1cf5815c2c36678cff3823f78b7f13a7546c
         if ($montant <= 0)
         {
           $montant = "";

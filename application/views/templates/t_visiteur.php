@@ -35,7 +35,12 @@
 
 				<ul id="menuList">
 					<li>
+						<?php if($this->session->userdata('metier') == 'visiteur') { ?>
 						Visiteur :<br/>
+						<?php }
+						elseif ($this->session->userdata('metier') == 'comptable') {?>
+						Comptable :<br/>
+					<?php } ?>
 						<?php echo $this->session->userdata('prenom')."  ".$this->session->userdata('nom');  ?>
 					</li>
 					<br/>
