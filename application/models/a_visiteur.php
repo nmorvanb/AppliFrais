@@ -164,7 +164,65 @@ class A_visiteur extends CI_Model {
 	public function supprLigneFrais($idVisiteur, $mois, $idLigneFrais)
 	{	// TODO : s'assurer que les paramètres reçus sont cohérents avec ceux mémorisés en session et cohérents entre eux
 
-	    $this->dataAccess->supprimerLigneHorsForfait($idLigneFrais);
+	  $this->dataAccess->supprimerLigneHorsForfait($idLigneFrais);
       $this->dataAccess->recalculeMontantFiche($idVisiteur,$mois);
+	}
+	
+	public function imprimeFiche($idVisiteur, $mois)
+	{
+		$lesFraisHorsForfait = $this->dataAccess->getLesLignesHorsForfait($idVisiteur,$mois);
+		$lesFraisForfait = $this->dataAccess->getLesLignesForfait($idVisiteur,$mois);
+		
+		require('application/fpdf/fpdf.php');
+
+		$pdf = new FPDF();
+		$pdf->AddPage();
+		$pdf->SetFont('Arial','B',16);
+		$pdf->Cell(0,0,'Fiche de frais du mois '.substr( $mois,4,2).'-'.substr( $mois,0,4).' :');
+		$pdf->Ln();
+		$pdf->SetXY(10,25);
+		$pdf->Cell(0,0,utf8_decode('Eléments forfaitisés :'));
+		$pdf->SetXY(10,35);
+		
+		// forfait
+		$titres = array(utf8_decode('Libellé'), utf8_decode('Quantité'));
+		$w = array(90, 90);
+		// En-tête
+		for($i=0;$i<count($titres);$i++)
+			$pdf->Cell($w[$i],7,$titres[$i],1,0,'C');
+		$pdf->Ln();
+		// Données
+		foreach($lesFraisForfait as $row)
+		{
+			$pdf->Cell($w[0],6,utf8_decode($row['libelle']),'LR');
+			$pdf->Cell($w[1],6,$row['quantite'],'LR');
+			$pdf->Ln();
+		}
+		// Trait de terminaison
+		$pdf->Cell(array_sum($w),0,'','T');
+		
+		// hors forfait
+		$pdf->SetXY(10,85);
+		$pdf->Cell(0,0,utf8_decode('Eléments hors forfait :'));
+		$pdf->SetXY(10,95);
+		
+		$titres = array(utf8_decode('Libellé'), 'Date', 'Montant');
+		$w = array(100, 40, 40);
+		// En-tête
+		for($i=0;$i<count($titres);$i++)
+			$pdf->Cell($w[$i],7,$titres[$i],1,0,'C');
+		$pdf->Ln();
+		// Données
+		foreach($lesFraisHorsForfait as $row)
+		{
+			$pdf->Cell($w[0],6,utf8_decode($row['libelle']),'LR');
+			$pdf->Cell($w[1],6,$row['date'],'LR');
+			$pdf->Cell($w[2],6,$row['montant'],'LR');
+			$pdf->Ln();
+		}
+		// Trait de terminaison
+		$pdf->Cell(array_sum($w),0,'','T');
+		
+		$pdf->Output('D','fiche_frais_'.$mois.'.pdf');
 	}
 }

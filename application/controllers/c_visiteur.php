@@ -101,6 +101,13 @@ class C_visiteur extends CI_Controller {
 				// ... et on revient à mesFiches
 				$this->a_visiteur->mesFiches($idVisiteur, "La fiche $mois a été signée. <br/>Pensez à envoyer vos justificatifs afin qu'elle soit traitée par le service comptable rapidement.");
 			}
+			elseif ($action == 'imprimeFiche')
+			{
+				$this->load->model('a_visiteur');
+				$mois = $params[0];
+				$idVisiteur = $this->session->userdata('idUser');
+				$this->a_visiteur->imprimeFiche($idVisiteur, $mois);
+			}
 			elseif ($action == 'majForfait') // majFraisForfait demandé : on active la fonction majFraisForfait du modèle visiteur ...
 			{	// TODO : conrôler que l'obtention des données postées ne rend pas d'erreurs
 				// TODO : dans la dynamique de l'application, contrôler que l'on vient bien de modFiche
