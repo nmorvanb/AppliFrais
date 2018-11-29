@@ -13,7 +13,7 @@
 				<th >Etat</th>
 				<th >Montant</th>
 				<th >Date modif.</th>
-				<th  colspan="4">Actions</th>
+				<th  colspan="3">Actions</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -24,7 +24,7 @@
 				$modLink = '';
 				$signeLink = '';
 				$pdfLink = '';
-				
+
 				$dateNow = date("Ym");
 				$dateLimit = "";
 				if(date("m")==12) {

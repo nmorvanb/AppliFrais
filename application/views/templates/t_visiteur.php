@@ -3,8 +3,7 @@
 	$v_path = base_url('application/views');
 ?>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
 
 	<head>
@@ -30,27 +29,25 @@
 			<!-- Division pour le menu -->
 			<div id="menuGauche">
 				<div id="infosUtil">
-					<h2></h2>
+					<h2> </h2>
 				</div>
 
 				<ul id="menuList">
 					<li>
 						<?php if($this->session->userdata('metier') == 'visiteur') { ?>
-						Visiteur :<br/>
+						Visiteur :
 						<?php }
 						elseif ($this->session->userdata('metier') == 'comptable') {?>
-						Comptable :<br/>
+						Comptable :
 					<?php } ?>
 						<?php echo $this->session->userdata('prenom')."  ".$this->session->userdata('nom');  ?>
 					</li>
-					<br/>
 					<li class="smenu">
 						<?php echo anchor('c_visiteur/', 'Accueil', 'title="Page d\'accueil"'); ?>
 					</li>
 					<li class="smenu">
 						<?php echo anchor('c_visiteur/mesFiches', 'Mes fiches de frais', 'title="Consultation de mes fiches de frais"'); ?>
 					</li>
-					<br/>
 					<li class="smenu">
 						<?php echo anchor('c_visiteur/deconnecter', 'Se déconnecter', 'title="Déconnexion"'); ?>
 					</li>
