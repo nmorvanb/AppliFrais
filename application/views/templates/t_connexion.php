@@ -3,8 +3,7 @@
 	$v_path = base_url('application/views');
 ?>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
 
 	<head>
@@ -23,7 +22,10 @@
 			<?php echo $body; ?>
 
 			<div id="pied">
-				<br/>
+				<img src="<?php echo $v_path.'/templates/images/valid-html401.png'?>" id="iconsValid" alt="Validation HTML gold" title="Validation HTML gold" />
+				<img src="<?php echo $v_path.'/templates/images/valid-html401-blue.png'?>" id="iconsValid" alt="Validation HTML blue" title="Validation HTML blue" />
+				<img src="<?php echo $v_path.'/templates/images/valid-css2.png'?>" id="iconsValid" alt="Validation CSS gold" title="Validation CSS gold" />
+				<img src="<?php echo $v_path.'/templates/images/valid-css2-blue.png'?>" id="iconsValid" alt="Validation CSS blue" title="Validation CSS blue" />
 			</div>
 
 		</div>
