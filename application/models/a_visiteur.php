@@ -170,24 +170,26 @@ class A_visiteur extends CI_Model {
       $this->dataAccess->recalculeMontantFiche($idVisiteur,$mois);
 	}
 
-  //fonction permettant l'impression des fiches. 
+  //fonction permettant l'impression des fiches
 	public function imprimeFiche($idVisiteur, $mois)
 	{
-		$lesFraisHorsForfait = $this->dataAccess->getLesLignesHorsForfait($idVisiteur,$mois);
-		$lesFraisForfait = $this->dataAccess->getLesLignesForfait($idVisiteur,$mois);
+		$lesFraisHorsForfait = $this->dataAccess->getLesLignesHorsForfait($idVisiteur, $mois);
+		$lesFraisForfait = $this->dataAccess->getLesLignesForfait($idVisiteur, $mois);
+    $totalFrais = $this->dataAccess->totalFiche($idVisiteur, $mois);
 
 		require('application/fpdf/fpdf.php');
 
 		$pdf = new FPDF();
 		$pdf->AddPage();
 		$pdf->SetFont('Arial','B',16);
-		$pdf->Cell(0,0,'Fiche de frais du mois '.substr( $mois,4,2).'-'.substr( $mois,0,4).' :');
+		$pdf->Cell(0,0,'Fiche de frais du mois '.substr( $mois,4,2).'-'.substr( $mois,0,4).' de '.$this->session->userdata('prenom').' '.$this->session->userdata('nom').' :');
 		$pdf->Ln();
+
+    // Forfait
 		$pdf->SetXY(10,25);
 		$pdf->Cell(0,0,utf8_decode('Eléments forfaitisés :'));
 		$pdf->SetXY(10,35);
-
-		// forfait
+    // Titre
 		$titres = array(utf8_decode('Libellé'), utf8_decode('Quantité'));
 		$w = array(90, 90);
 		// En-tête
@@ -201,31 +203,48 @@ class A_visiteur extends CI_Model {
 			$pdf->Cell($w[1],6,$row['quantite'],'LR');
 			$pdf->Ln();
 		}
-		// Trait de terminaison
-		$pdf->Cell(array_sum($w),0,'','T');
+		// Total et trait de terminaison
+    $totalHF = 0;
+    foreach($lesFraisHorsForfait as $row)
+		{
+			$totalHF += $row['montant'];
+		}
+    $pdf->Cell($w[0],6,'Total','LR');
+    $pdf->Cell($w[1],6,$totalFrais-$totalHF.' euros','LR');
+    $pdf->Ln();
+    $pdf->Cell(array_sum($w),0,'','T');
 
-		// hors forfait
+		// Hors forfait
 		$pdf->SetXY(10,85);
 		$pdf->Cell(0,0,utf8_decode('Eléments hors forfait :'));
 		$pdf->SetXY(10,95);
-
+    // Titre
 		$titres = array(utf8_decode('Libellé'), 'Date', 'Montant');
 		$w = array(100, 40, 40);
 		// En-tête
 		for($i=0;$i<count($titres);$i++)
 			$pdf->Cell($w[$i],7,$titres[$i],1,0,'C');
 		$pdf->Ln();
-		// Données
+		// Données et calcul du total
+
 		foreach($lesFraisHorsForfait as $row)
 		{
 			$pdf->Cell($w[0],6,utf8_decode($row['libelle']),'LR');
 			$pdf->Cell($w[1],6,$row['date'],'LR');
-			$pdf->Cell($w[2],6,$row['montant'],'LR');
+			$pdf->Cell($w[2],6,$row['montant'].' euros','LR');
 			$pdf->Ln();
 		}
-		// Trait de terminaison
+		// Total et trait de terminaison
+    $pdf->Cell($w[0],6,'Total','LR');
+    $pdf->Cell($w[1],6,'Mois '.$mois,'LR');
+    $pdf->Cell($w[1],6,$totalHF.' euros','LR');
+    $pdf->Ln();
 		$pdf->Cell(array_sum($w),0,'','T');
 
-		$pdf->Output('D','fiche_frais_'.$mois.'.pdf');
+    // Total de la fiche
+    $pdf->SetXY(10,155);
+    $pdf->Cell(0,0,'Total des frais : '.$totalFrais.' euros');
+
+		$pdf->Output('I','fiche_frais_'.$mois.'_'.$this->session->userdata('nom').'_'.$this->session->userdata('prenom').'.pdf');
 	}
 }
