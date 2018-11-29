@@ -136,7 +136,7 @@ class A_visiteur extends CI_Model {
 		    $montant = $uneLigne['montant'];
 
         $moisdate = $this->functionsLib->estMoisValide($dateFrais);
-        // Vérification montant en valeur numérique.
+        // Vérification montant en valeur numérique et date correct a l'aide des fonctions dans functionsLib.
         if ($montant <= 0)
         {
           $montant = "";
@@ -170,6 +170,7 @@ class A_visiteur extends CI_Model {
       $this->dataAccess->recalculeMontantFiche($idVisiteur,$mois);
 	}
 
+  //fonction permettant l'impression des fiches. 
 	public function imprimeFiche($idVisiteur, $mois)
 	{
 		$lesFraisHorsForfait = $this->dataAccess->getLesLignesHorsForfait($idVisiteur,$mois);
