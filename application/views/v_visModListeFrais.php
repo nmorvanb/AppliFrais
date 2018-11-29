@@ -77,6 +77,7 @@
 				<legend>Nouvel élément hors forfait</legend>
 				<p>
 					<label for="txtDateHF">Date (jj/mm/aaaa): </label>
+					<!-- REQUIRED rend obligatoire l'entrer d'un parametre dans le champ. -->
 					<input type="Date" id="txtDateHF" required name="dateFrais" size="10" maxlength="10" value=""  />
 				</p>
 				<p>

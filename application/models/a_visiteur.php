@@ -136,6 +136,7 @@ class A_visiteur extends CI_Model {
 		    $montant = $uneLigne['montant'];
 
         $moisdate = $this->functionsLib->estMoisValide($dateFrais);
+        // Vérification montant en valeur numérique.
         if ($montant <= 0)
         {
           $montant = "";
@@ -144,9 +145,10 @@ class A_visiteur extends CI_Model {
         else {
           if($moisdate != $mois) {
             return 0;
-            
+
           }
           else {
+            //actualisation du montant de la date sur la page de liste fiche.
             $this->dataAccess->creeLigneHorsForfait($idVisiteur,$mois,$libelle,$dateFrais,$montant);
             $this->dataAccess->recalculeMontantFiche($idVisiteur,$mois);
             return 1;
@@ -167,12 +169,12 @@ class A_visiteur extends CI_Model {
 	  $this->dataAccess->supprimerLigneHorsForfait($idLigneFrais);
       $this->dataAccess->recalculeMontantFiche($idVisiteur,$mois);
 	}
-	
+
 	public function imprimeFiche($idVisiteur, $mois)
 	{
 		$lesFraisHorsForfait = $this->dataAccess->getLesLignesHorsForfait($idVisiteur,$mois);
 		$lesFraisForfait = $this->dataAccess->getLesLignesForfait($idVisiteur,$mois);
-		
+
 		require('application/fpdf/fpdf.php');
 
 		$pdf = new FPDF();
@@ -183,7 +185,7 @@ class A_visiteur extends CI_Model {
 		$pdf->SetXY(10,25);
 		$pdf->Cell(0,0,utf8_decode('Eléments forfaitisés :'));
 		$pdf->SetXY(10,35);
-		
+
 		// forfait
 		$titres = array(utf8_decode('Libellé'), utf8_decode('Quantité'));
 		$w = array(90, 90);
@@ -200,12 +202,12 @@ class A_visiteur extends CI_Model {
 		}
 		// Trait de terminaison
 		$pdf->Cell(array_sum($w),0,'','T');
-		
+
 		// hors forfait
 		$pdf->SetXY(10,85);
 		$pdf->Cell(0,0,utf8_decode('Eléments hors forfait :'));
 		$pdf->SetXY(10,95);
-		
+
 		$titres = array(utf8_decode('Libellé'), 'Date', 'Montant');
 		$w = array(100, 40, 40);
 		// En-tête
@@ -222,7 +224,7 @@ class A_visiteur extends CI_Model {
 		}
 		// Trait de terminaison
 		$pdf->Cell(array_sum($w),0,'','T');
-		
+
 		$pdf->Output('D','fiche_frais_'.$mois.'.pdf');
 	}
 }
