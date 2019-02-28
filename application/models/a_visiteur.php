@@ -170,7 +170,7 @@ class A_visiteur extends CI_Model {
       $this->dataAccess->recalculeMontantFiche($idVisiteur,$mois);
 	}
 
-  //fonction permettant l'impression des fiches. 
+  //fonction permettant l'impression des fiches.
 	public function imprimeFiche($idVisiteur, $mois)
 	{
 		$lesFraisHorsForfait = $this->dataAccess->getLesLignesHorsForfait($idVisiteur,$mois);
