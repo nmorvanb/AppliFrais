@@ -31,27 +31,44 @@
 				<div id="infosUtil">
 					<h2> </h2>
 				</div>
+				<?php if($this->session->userdata('metier') == 'visiteur') { ?>
+					<ul id="menuList">
+						<li>
+							Visiteur :
+							<?php echo $this->session->userdata('prenom')."  ".$this->session->userdata('nom');  ?>
+						</li>
+						<li class="smenu">
+							<?php echo anchor('c_visiteur/', 'Accueil', 'title="Page d\'accueil"'); ?>
+						</li>
+						<li class="smenu">
+							<?php echo anchor('c_visiteur/mesFiches', 'Mes fiches de frais', 'title="Consultation de mes fiches de frais"'); ?>
+						</li>
+						<li class="smenu">
+							<?php echo anchor('c_visiteur/deconnecter', 'Se déconnecter', 'title="Déconnexion"'); ?>
+						</li>
+					</ul>
 
-				<ul id="menuList">
-					<li>
-						<?php if($this->session->userdata('metier') == 'visiteur') { ?>
-						Visiteur :
-						<?php }
-						elseif ($this->session->userdata('metier') == 'comptable') {?>
-						Comptable :
-					<?php } ?>
-						<?php echo $this->session->userdata('prenom')."  ".$this->session->userdata('nom');  ?>
-					</li>
-					<li class="smenu">
-						<?php echo anchor('c_visiteur/', 'Accueil', 'title="Page d\'accueil"'); ?>
-					</li>
-					<li class="smenu">
-						<?php echo anchor('c_visiteur/mesFiches', 'Mes fiches de frais', 'title="Consultation de mes fiches de frais"'); ?>
-					</li>
-					<li class="smenu">
-						<?php echo anchor('c_visiteur/deconnecter', 'Se déconnecter', 'title="Déconnexion"'); ?>
-					</li>
-				</ul>
+				<?php }
+				elseif ($this->session->userdata('metier') == 'comptable') {?>
+					<ul id="menuList">
+						<li>
+							Comptable :
+							<?php echo $this->session->userdata('prenom')."  ".$this->session->userdata('nom');  ?>
+						</li>
+						<li class="smenu">
+							<?php echo anchor('c_comptable/', 'Accueil', 'title="Page d\'accueil"'); ?>
+						</li>
+						<li class="smenu">
+							<?php echo anchor('c_comptable/lesFiches', 'Les fiches de frais', 'title="Consultation des fiches de frais"'); ?>
+						</li>
+						<li class="smenu">
+							<?php echo anchor('c_comptable/deconnecter', 'Se déconnecter', 'title="Déconnexion"'); ?>
+						</li>
+					</ul>
+
+			<?php } ?>
+
+
 
 			</div>
 
