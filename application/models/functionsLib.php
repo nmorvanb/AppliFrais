@@ -74,6 +74,28 @@ class FunctionsLib extends CI_Model {
 		return $lesMois;
 	}
 
+  /**
+  * Calcule le mois jusqu'auquel on affichera les fiches de frais
+
+  * @return : le mois limite des fiches à afficher au format aaaamm
+  **/
+  function getMoisLimite()
+  {
+    $annee = date("Y");
+    $mois = date("m");
+    if($mois == 12) {
+      $mois = '01';
+    }
+    else {
+      $mois = $mois + 1;
+      $annee = $annee - 1;
+    }
+    if(strlen($mois) == 1){
+      $mois = "0".$mois;
+    }
+    return $annee.$mois;
+  }
+
 	/**
 	 * Indique si une valeur est un entier positif ou nul
 

@@ -290,9 +290,11 @@ class DataAccess extends CI_Model {
 	 * @param $idVisiteur
 	*/
 	public function getFiches ($idVisiteur) {
-		$req = "select idVisiteur, mois, montantValide, dateModif, id, libelle
+    $this->load->model('functionsLib');
+    $moisLimite = $this->functionsLib->getMoisLimite();
+    $req = "select idVisiteur, mois, montantValide, dateModif, id, libelle
 				from  fichefrais inner join Etat on ficheFrais.idEtat = Etat.id
-				where fichefrais.idvisiteur = '$idVisiteur' and libelle != 'Remboursée'
+				where fichefrais.idvisiteur = '$idVisiteur' and mois >= '$moisLimite'
 				order by mois desc";
 		$rs = $this->db->query($req);
 		$lesFiches = $rs->result_array();
