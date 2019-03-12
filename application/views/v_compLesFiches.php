@@ -18,7 +18,7 @@
 		<tbody>
 
 		<?php
-			foreach( $mesFiches as $uneFiche)
+			foreach( $lesFiches as $uneFiche)
 			{
 				$pdfLink = anchor('c_comptable/imprimeFiche/'.$uneFiche['id'], 'imprimer',  'title="Imprimer la fiche en PDF"');
 				$signeLink = anchor('c_comptable/signeFiche/'.$uneFiche['id'], 'signer',  'title="Signer la fiche"  onclick="return confirm(\'Voulez-vous vraiment signer cette fiche ?\');"');
