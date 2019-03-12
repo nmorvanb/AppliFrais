@@ -288,6 +288,7 @@ class DataAccess extends CI_Model {
 	 * Obtient toutes les fiches (sans détail) d'un visiteur donné
 	 *
 	 * @param $idVisiteur
+   * @return les fiches du visiteur
 	*/
 	public function getFiches ($idVisiteur) {
     $this->load->model('functionsLib');
@@ -300,6 +301,21 @@ class DataAccess extends CI_Model {
 		$lesFiches = $rs->result_array();
 		return $lesFiches;
 	}
+
+  /**
+    * Obtient toutes les fiches (sans détail) des visiteurs qui sont signées
+    *
+    * @return les fiches à valider
+  */
+  public function getFichesVisiteurs() {
+    $req = "select idVisiteur, mois, montantValide, dateModif, id
+        from fichefrais
+        where idEtat = 'CL'
+        order by mois desc";
+    $rs = $this->db->query($req);
+    $lesFiches = $rs->result_array();
+    return $lesFiches;
+  }
 
 	/**
 	 * Calcule le montant total de la fiche pour un visiteur et un mois donnés
