@@ -33,17 +33,17 @@
 				</div>
 					<ul id="menuList">
 						<li>
-							Visiteur :
+							Comptable :
 							<?php echo $this->session->userdata('prenom')."  ".$this->session->userdata('nom');  ?>
 						</li>
 						<li class="smenu">
-							<?php echo anchor('c_visiteur/', 'Accueil', 'title="Page d\'accueil"'); ?>
+							<?php echo anchor('c_comptable/', 'Accueil', 'title="Page d\'accueil"'); ?>
 						</li>
 						<li class="smenu">
-							<?php echo anchor('c_visiteur/mesFiches', 'Mes fiches de frais', 'title="Consultation de mes fiches de frais"'); ?>
+							<?php echo anchor('c_comptable/lesFiches', 'Les fiches de frais', 'title="Consultation des fiches de frais"'); ?>
 						</li>
 						<li class="smenu">
-							<?php echo anchor('c_visiteur/deconnecter', 'Se déconnecter', 'title="Déconnexion"'); ?>
+							<?php echo anchor('c_comptable/deconnecter', 'Se déconnecter', 'title="Déconnexion"'); ?>
 						</li>
 					</ul>
 			</div>

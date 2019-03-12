@@ -27,7 +27,11 @@ class C_default extends CI_Controller {
 		else
 		{
 			$this->load->helper('url');
-			redirect('/c_visiteur/');
+			if($this->session->userdata('metier') == 'visiteur') {
+				redirect('/c_visiteur/');
+			} else {
+				redirect('/c_comptable/');
+			}
 		}
 	}
 

@@ -23,19 +23,7 @@
 			{
 				$modLink = '';
 				$signeLink = '';
-				$pdfLink = '';
-
-				$dateNow = date("Ym");
-				$dateLimit = "";
-				if(date("m")==12) {
-					$dateLimit = date("Y")."01";
-				}
-				else {
-					$dateLimit = (date("Y")-1).(date("m")+1);
-				}
-				if($dateLimit <= $uneFiche['mois'] && $uneFiche['mois'] <= $dateNow) {
-					$pdfLink = anchor('c_visiteur/imprimeFiche/'.$uneFiche['mois'], 'imprimer',  'title="Imprimer la fiche en PDF"');
-				}
+				$pdfLink = anchor('c_visiteur/imprimeFiche/'.$uneFiche['mois'], 'imprimer',  'title="Imprimer la fiche en PDF"');
 
 				if ($uneFiche['id'] == 'CR') {
 					$modLink = anchor('c_visiteur/modFiche/'.$uneFiche['mois'], 'modifier',  'title="Modifier la fiche"');
