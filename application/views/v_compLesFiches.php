@@ -26,7 +26,7 @@
 
 				echo
 				'<tr>
-					<td class="date">'.anchor('c_comptable/voirFiche/'.$uneFiche['idVisiteur'].'/'.$uneFiche['id]', $uneFiche['id'],  'title="Consulter la fiche"').'</td>
+					<td class="date">'.anchor('c_comptable/voirFiche/'.$uneFiche['idVisiteur'].'/'.$uneFiche['mois'], $uneFiche['mois'],  'title="Consulter la fiche"').'</td>
 					<td class="montant">'.$uneFiche['montantValide'].'</td>
 					<td class="date">'.$uneFiche['dateModif'].'</td>
 					<td class="action">'.$modLink.'</td>
