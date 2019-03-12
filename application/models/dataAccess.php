@@ -308,7 +308,7 @@ class DataAccess extends CI_Model {
     * @return les fiches à valider
   */
   public function getFichesVisiteurs() {
-    $req = "select idVisiteur, mois, montantValide, dateModif, id
+    $req = "select idVisiteur, mois, montantValide, dateModif
         from fichefrais
         where idEtat = 'CL'
         order by mois desc";

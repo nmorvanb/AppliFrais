@@ -48,7 +48,7 @@ class C_comptable extends CI_Controller {
 				$this->session->unset_userdata('mois');
 				$this->session->unset_userdata('idVisiteur');
 
-				$this->a_visiteur->lesFiches();
+				$this->a_comptable->lesFiches();
 			}
 			elseif ($action == 'deconnecter')	// deconnecter demandé : on active la fonction deconnecter du modèle authentif
 			{
@@ -68,7 +68,7 @@ class C_comptable extends CI_Controller {
 				$this->session->set_userdata('mois', $mois);
 				$this->session->set_userdata('idVisiteur', $idVisiteur);
 
-				$this->a_visiteur->voirFiche($idVisiteur, $mois);
+				$this->a_comptable->voirFiche($idVisiteur, $mois);
 			}
 			elseif ($action == 'modFiche')		// modFiche demandé : on active la fonction modFiche du modèle comptable
 			{	// TODO : contrôler la validité du second paramètre (mois de la fiche à modifier)
@@ -111,24 +111,7 @@ class C_comptable extends CI_Controller {
 				// ... et on revient à lesFiches
 				$this->a_visiteur->lesFiches();
 			}
-			elseif ($action == 'majForfait') // majForfait demandé : on active la fonction majForfait du modèle comptable
-			{	// TODO : conrôler que l'obtention des données postées ne rend pas d'erreurs
-				// TODO : dans la dynamique de l'application, contrôler que l'on vient bien de modFiche
 
-				$this->load->model('a_visiteur');
-
-				// obtention de l'id du visiteur et du mois concernés
-				$idVisiteur = $this->session->userdata('idVisiteur');
-				$mois = $this->session->userdata('mois');
-
-				// obtention des données postées
-				$lesFrais = $this->input->post('lesFrais');
-
-				$this->a_comptable->majForfait($idVisiteur, $mois, $lesFrais);
-
-				// ... et on revient en modification de la fiche
-				$this->a_comptable->modFiche($idVisiteur, $mois, 'Modification(s) des éléments forfaitisés enregistrée(s) ...');
-			}
 			else								// dans tous les autres cas, on envoie la vue par défaut pour l'erreur 404
 			{
 				show_404();
