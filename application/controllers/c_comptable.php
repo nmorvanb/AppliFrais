@@ -83,7 +83,7 @@ class C_comptable extends CI_Controller {
 				$this->session->set_userdata('mois', $mois);
 				$this->session->set_userdata('idVisiteur', $idVisiteur);
 
-				$this->a_visiteur->modFiche($idVisiteur, $mois);
+				$this->a_comptable->modFiche($idVisiteur, $mois);
 			}
 			elseif ($action == 'valideFiche') 	// valideFiche demandé : on active la fonction valideFiche du modèle comptable
 			{	// TODO : contrôler la validité du second paramètre (mois de la fiche à modifier)
@@ -93,10 +93,10 @@ class C_comptable extends CI_Controller {
 				$mois = $params[0];
 				$idVisiteur = $params[1];
 
-				$this->a_visiteur->valideFiche($idVisiteur, $mois);
+				$this->a_comptable->valideFiche($idVisiteur, $mois);
 
 				// ... et on revient à lesFiches
-				$this->a_visiteur->lesFiches();
+				$this->a_comptable->lesFiches();
 			}
 			elseif ($action == 'refuseFiche') 	// refuseFiche demandé : on active la fonction refuseFiche du modèle comptable
 			{	// TODO : contrôler la validité du second paramètre (mois de la fiche à modifier)
@@ -106,10 +106,10 @@ class C_comptable extends CI_Controller {
 				$mois = $params[0];
 				$idVisiteur = $params[1];
 
-				$this->a_visiteur->refuseFiche($idVisiteur, $mois);
+				$this->a_comptable->refuseFiche($idVisiteur, $mois);
 
 				// ... et on revient à lesFiches
-				$this->a_visiteur->lesFiches();
+				$this->a_comptable->lesFiches();
 			}
 
 			else								// dans tous les autres cas, on envoie la vue par défaut pour l'erreur 404
