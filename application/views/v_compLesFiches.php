@@ -9,7 +9,7 @@
 	<table class="listeLegere">
 		<thead>
 			<tr>
-				<th >Visiteur</th>
+				<th >Numéro Visiteur - Mois</th>
 				<th >Montant</th>
 				<th >Date modif.</th>
 				<th  colspan="3">Actions</th>
@@ -26,7 +26,7 @@
 
 				echo
 				'<tr>
-					<td class="date">'.anchor('c_comptable/voirFiche/'.$uneFiche['idVisiteur'].'/'.$uneFiche['mois'], $uneFiche['mois'],  'title="Consulter la fiche"').'</td>
+					<td class="date">'.anchor('c_comptable/voirFiche/'.$uneFiche['idVisiteur'].'/'.$uneFiche['mois'], $uneFiche['idVisiteur'].' - '.$uneFiche['mois'],  'title="Consulter la fiche"').'</td>
 					<td class="montant">'.$uneFiche['montantValide'].'</td>
 					<td class="date">'.$uneFiche['dateModif'].'</td>
 					<td class="action">'.$valideLink.'</td>
