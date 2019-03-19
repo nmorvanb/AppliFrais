@@ -25,7 +25,7 @@
 				$signeLink = '';
 				$pdfLink = anchor('c_visiteur/imprimeFiche/'.$uneFiche['mois'], 'imprimer',  'title="Imprimer la fiche en PDF"');
 
-				if ($uneFiche['id'] == 'CR') {
+				if ($uneFiche['id'] == 'CR' || $uneFiche['id'] == 'RF') {
 					$modLink = anchor('c_visiteur/modFiche/'.$uneFiche['mois'], 'modifier',  'title="Modifier la fiche"');
 					$signeLink = anchor('c_visiteur/signeFiche/'.$uneFiche['mois'], 'signer',  'title="Signer la fiche"  onclick="return confirm(\'Voulez-vous vraiment signer cette fiche ?\');"');
 				}
