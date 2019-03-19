@@ -61,8 +61,8 @@ class C_comptable extends CI_Controller {
 				$this->load->model('a_comptable');
 
 				// obtention du mois et de l'id du visiteur de la fiche à modifier
-				$mois = $params[0];
-				$idVisiteur = $params[1];
+				$idVisiteur = $params[0];
+				$mois = $params[1];
 				// mémorisation du mode modification en cours
 				// on mémorise le mois et l'id du visiteur de la fiche en cours de modification
 				$this->session->set_userdata('mois', $mois);
@@ -76,8 +76,8 @@ class C_comptable extends CI_Controller {
 				$this->load->model('a_comptable');
 
 				// obtention du mois et de l'id du visiteur de la fiche à modifier
-				$mois = $params[0];
-				$idVisiteur = $params[1];
+				$idVisiteur = $params[0];
+				$mois = $params[1];
 				// mémorisation du mode modification en cours
 				// on mémorise le mois et l'id du visiteur de la fiche en cours de modification
 				$this->session->set_userdata('mois', $mois);
@@ -90,8 +90,8 @@ class C_comptable extends CI_Controller {
 				$this->load->model('a_comptable');
 
 				// obtention du mois et de l'id du visiteur de la fiche à modifier
-				$mois = $params[0];
-				$idVisiteur = $params[1];
+				$idVisiteur = $params[0];
+				$mois = $params[1];
 
 				$this->a_comptable->valideFiche($idVisiteur, $mois);
 
@@ -103,8 +103,8 @@ class C_comptable extends CI_Controller {
 				$this->load->model('a_comptable');
 
 				// obtention du mois et de l'id du visiteur de la fiche à modifier
-				$mois = $params[0];
-				$idVisiteur = $params[1];
+				$idVisiteur = $params[0];
+				$mois = $params[1];
 
 				$this->a_comptable->refuseFiche($idVisiteur, $mois);
 

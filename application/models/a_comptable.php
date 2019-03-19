@@ -59,15 +59,36 @@ class A_comptable extends CI_Model {
 	*/
 	public function voirFiche($idVisiteur, $mois)
 	{	// TODO : s'assurer que les paramètres reçus sont cohérents avec ceux mémorisés en session
-
-		$data['numAnnee'] = substr( $mois,0,4);
+    $data['numAnnee'] = substr( $mois,0,4);
 		$data['numMois'] = substr( $mois,4,2);
+    $data['idVisiteur'] = $idVisiteur;
 		$data['lesFraisHorsForfait'] = $this->dataAccess->getLesLignesHorsForfait($idVisiteur,$mois);
 		$data['lesFraisForfait'] = $this->dataAccess->getLesLignesForfait($idVisiteur,$mois);
 
-		$this->templates->load('t_comptable', 'v_visVoirListeFrais', $data);
+		$this->templates->load('t_comptable', 'v_compVoirListeFrais', $data);
 	}
 
+  /**
+   * Valider une fiche
+   *
+   * @param $idVisiteur : l'id du visiteur de la fiche
+   * @param $mois : le mois de la fiche à valider
+  */
+  public function valideFiche($idVisiteur, $mois)
+  {
+    $this->dataAccess->valideFiche($idVisiteur, $mois);
+  }
+
+  /**
+   * Refuser une fiche
+   *
+   * @param $idVisiteur : l'id du visiteur de la fiche
+   * @param $mois : le mois de la fiche à refuser
+  */
+  public function refuseFiche($idVisiteur, $mois)
+  {
+    $this->dataAccess->refuseFiche($idVisiteur, $mois);
+  }
 
   //fonction permettant l'impression des fiches
 	public function imprimeFiche($idVisiteur, $mois)

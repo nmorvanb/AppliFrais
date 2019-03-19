@@ -195,6 +195,36 @@ class DataAccess extends CI_Model {
 		}
 	}
 
+  /**
+	 * Valide une fiche de frais en modifiant son état de "CL" à "VA"
+	 * Ne fait rien si l'état initial n'est pas "CL"
+	 *
+	 * @param $idVisiteur
+	 * @param $mois sous la forme aaaamm
+	*/
+	public function valideFiche($idVisiteur,$mois){
+		//met à 'VA' son champs idEtat
+		$laFiche = $this->getLesInfosFicheFrais($idVisiteur,$mois);
+		if($laFiche['idEtat']=='CL'){
+				$this->majEtatFicheFrais($idVisiteur, $mois,'VA');
+		}
+	}
+
+  /**
+	 * Refuse une fiche de frais en modifiant son état de "CL" à "RF"
+	 * Ne fait rien si l'état initial n'est pas "CL"
+	 *
+	 * @param $idVisiteur
+	 * @param $mois sous la forme aaaamm
+	*/
+	public function refuseFiche($idVisiteur,$mois){
+		//met à 'VA' son champs idEtat
+		$laFiche = $this->getLesInfosFicheFrais($idVisiteur,$mois);
+		if($laFiche['idEtat']=='CL'){
+				$this->majEtatFicheFrais($idVisiteur, $mois,'RF');
+		}
+	}
+
 	/**
 	 * Crée un nouveau frais hors forfait pour un visiteur un mois donné
 	 * à partir des informations fournies en paramètre
@@ -277,7 +307,7 @@ class DataAccess extends CI_Model {
 	 * @param $mois sous la forme aaaamm
 	 * @param $etat : le nouvel état de la fiche
 	 */
-	public function majEtatFicheFrais($idVisiteur,$mois,$etat){
+	public function majEtatFicheFrais($idVisiteur,$mois,$etat) {
 		$req = "update ficheFrais
 				set idEtat = '$etat', dateModif = now()
 				where fichefrais.idvisiteur ='$idVisiteur' and fichefrais.mois = '$mois'";

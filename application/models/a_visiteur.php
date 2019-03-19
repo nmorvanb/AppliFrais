@@ -79,7 +79,7 @@ class A_visiteur extends CI_Model {
 	 * @param $mois : le mois de la fiche à modifier
 	 * @param $message : message facultatif destiné à notifier l'utilisateur du résultat d'une action précédemment exécutée
 	*/
-	public function modFiche($idVisiteur, $mois, $message=null)
+	public function modFiche($idVisiteur, $mois, $message = null)
 	{	// TODO : s'assurer que les paramètres reçus sont cohérents avec ceux mémorisés en session
 
 		$data['notify'] = $message;
